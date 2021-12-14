@@ -1,0 +1,25 @@
+.card-text a {
+   color: brown !important;
+}
+
+
+.card-text a > u {
+   color: #fd0d0d; !important;
+}
+
+
+a {
+   color: #fd0d0d; !important;
+}
+
+
+.modal {
+   background: rgba(0,0,0,.65);
+}
+
+.modal.show {
+   display: block;
+   align-items: center;
+
+
+}
