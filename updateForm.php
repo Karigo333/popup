@@ -27,19 +27,19 @@ $value = $news->getById($_GET['id']);
     <div class="input_form">
         <form action="update.php" method="post">
             <input type="hidden" name="id" value="<?=$_GET['id']?>"/>
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="exampleInputHeading1">Heading</label>
                 <input type="text" class="form-control" id="exampleInputHeading1" value="<?= $value['heading']?>"  name="heading">
             </div>
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="exampleInputDescription1">Description</label>
                 <textarea  class="form-control" id="exampleInputDescription1"  name="description"><?= $value['description']?></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="exampleInputImage1">Image</label>
                 <input type="file" class="form-control" id="exampleInputImage1" value="<?= $value['image']?>" name="image">
             </div>
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="exampleInputData1">Date</label>
                 <input type="date" class="form-control" id="exampleInputData1" value="<?= $value['data']?>" name="data">
             </div>

@@ -1,6 +1,9 @@
 <?php
 require_once "db/db_connect.php";
 
+
+
+
 function load()
 {
     $url = 'https://dailytargum.com/section/news';
@@ -69,6 +72,7 @@ function load()
             $query = DB::query()->prepare($sql);
             $query->execute($param);
 
+
             if (count($data_for_js) < 6) {
                 $data_for_js[] = [
                     'id' => $id ?? null,
@@ -80,19 +84,19 @@ function load()
             }
 
 
-        if($image){
-            define('DIRECTORY', '../images/');
-            $name_img = str_replace( 'https://dailytargum.imgix.net/images/', '', $image);
-            $ch5 = curl_init($image);
-            $fp = fopen("./images/$name_img", 'wb');
-            curl_setopt($ch5, CURLOPT_FILE, $fp);
-            curl_setopt($ch5, CURLOPT_HEADER, 0);
-            curl_setopt($ch5, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch5, CURLOPT_SSL_VERIFYHOST, false);
-            curl_exec($ch5);
-            curl_close($ch5);
-            fclose($fp);
-        }
+//        if($image){
+//            define('DIRECTORY', '../images/');
+//            $name_img = str_replace( 'https://dailytargum.imgix.net/images/', '', $image);
+//            $ch5 = curl_init($image);
+//            $fp = fopen("./images/$name_img", 'wb');
+//            curl_setopt($ch5, CURLOPT_FILE, $fp);
+//            curl_setopt($ch5, CURLOPT_HEADER, 0);
+//            curl_setopt($ch5, CURLOPT_SSL_VERIFYPEER, false);
+//            curl_setopt($ch5, CURLOPT_SSL_VERIFYHOST, false);
+//            curl_exec($ch5);
+//            curl_close($ch5);
+//            fclose($fp);
+//        }
 
 //        header('Location: adminPanel.php');
 

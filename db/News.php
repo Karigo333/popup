@@ -108,4 +108,11 @@ class News
         return $arr;
     }
 
+    public function formatDate() {
+        $query = "SELECT date_format(sort_date,'%d.%m.%Y %H:%i:%s') FROM test_task.news";
+        $query_r = DB::query()->prepare($query);
+        $query_r->execute();
+        return $query_r->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
 }

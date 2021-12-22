@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 require_once "db/db_connect.php";
 require_once "db/News.php";
 
@@ -33,19 +33,19 @@ if(isset($_POST['ad'])){
 <div class="container">
     <div class="input_form">
         <form action="add.php" method="post">
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="exampleInputHeading1">Heading</label>
                 <input type="text" class="form-control" id="exampleInputHeading1"  name="heading" required>
             </div>
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="exampleInputDescription1">Description</label>
                 <input type="text" class="form-control" id="exampleInputDescription1" name="description" required>
             </div>
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="exampleInputImage1">Image</label>
                 <input type="file" class="form-control" id="exampleInputImage1" name="image" required>
             </div>
-            <div class="form-group">
+            <div class="form-group pt-4">
                 <label for="exampleInputData1">Date</label>
                 <input type="date" class="form-control" id="exampleInputData1" name="data" required>
             </div>
