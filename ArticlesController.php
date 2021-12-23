@@ -7,12 +7,18 @@ require_once "Router.php";
 class ArticlesController
 {
 
-    public static function getArticlesByPage()
+    public static function getArticlesByPage($page)
     {
 
-        $news = new News();
+        $pagination = new News();
+        --$page;
+
+        $news = $pagination->get(6, $page);
         $jsonContent = json_encode($news);
-        echo($jsonContent);
+        echo $jsonContent;
 
     }
+
+
+
 }

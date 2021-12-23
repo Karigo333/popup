@@ -14,13 +14,13 @@ if (isset($_GET['page'])) {
 $pagination = new News();
 --$page;
 
-
 //$jsonContent = json_encode($pagination);
 //var_dump($jsonContent);
 
-
 $news = $pagination->get(6, $page);
 $newsCount = $pagination->getCount() / 6;
+
+
 
 
 ?>
@@ -38,6 +38,7 @@ $newsCount = $pagination->getCount() / 6;
     <link rel="stylesheet" type="text/css" href="public/style.css">
     <title>Fresh News</title>
     <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
 <div class="navbar navbar-dark bg-dark shadow-sm">
@@ -59,9 +60,9 @@ $newsCount = $pagination->getCount() / 6;
     <button class="btn btn-outline-secondary" onclick="changeToList(); return false;"><img
                 src="https://img.icons8.com/material-two-tone/24/000000/rounded-rectangle-stroked.png"/></button>
 </div>
+
 <div class="album py-5 bg-light">
     <div id="mydiv" class="container">
-        <button class="btn btn-outline-secondary align-items-center" onclick="pagination(); return false;">Load More</button>
         <div id="content" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <?php
             if (!empty($news)):
@@ -90,34 +91,40 @@ $newsCount = $pagination->getCount() / 6;
                 <?php endforeach; endif; ?>
         </div>
     </div>
-    <div class="container bgcont center-block pt-2">
-    <?php if ($newsCount): ?>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination ">
-                <li class="page-item">
-                    <a class="page-link" href="?page=1" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <?php for ($i = 1; $i <= $newsCount; $i++): ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
-                <?php endfor; ?>
-                <li class="page-item">
-                    <a class="page-link" href="<?= $newsCount ?>" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    <?php endif; ?>
-</div>
-</div>
 
-<?php if ($news): ?>
-    <div id="news-page-data" data-test="<?=htmlspecialchars(json_encode($news))?>"></div>
-<?php endif; ?>
+    <div class="col text-center after-posts mt-3">
+        <button id="load" class="btn btn-outline-dark load-more" onclick="getNews(); return false;" type="button">
+            Load more
+        </button>
+    </div>
+<!--    <div class="container bgcont center-block pt-2">-->
+<!--    --><?php //if ($newsCount): ?>
+<!--        <nav aria-label="Page navigation example">-->
+<!--            <ul class="pagination ">-->
+<!--                <li class="page-item">-->
+<!--                    <a class="page-link" href="?page=1" aria-label="Previous">-->
+<!--                        <span aria-hidden="true">&laquo;</span>-->
+<!--                        <span class="sr-only">Previous</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                --><?php //for ($i = 1; $i <= $newsCount; $i++): ?>
+<!--                    <li class="page-item"><a class="page-link" href="?page=--><?//= $i ?><!--">--><?//= $i ?><!--</a></li>-->
+<!--                --><?php //endfor; ?>
+<!--                <li class="page-item">-->
+<!--                    <a class="page-link" href="--><?//= $newsCount ?><!--" aria-label="Next">-->
+<!--                        <span aria-hidden="true">&raquo;</span>-->
+<!--                        <span class="sr-only">Next</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+<!--    --><?php //endif; ?>
+<!--</div>-->
+<!--</div>-->
+<!---->
+<?php //if ($news): ?>
+<!--    <div id="news-page-data" data-test="--><?//=htmlspecialchars(json_encode($news))?><!--"></div>-->
+<?php //endif; ?>
 <div class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

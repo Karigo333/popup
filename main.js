@@ -1,58 +1,54 @@
 function getNews() {
 
-
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState === 4 && xhttp.status === 200)
-            // document.getElementById("mydiv").innerHTML = xhttp.response;
             localStorage.setItem('xhttp', xhttp.response);
             const getItem = localStorage.getItem('xhttp');
-            const a = JSON.parse(getItem);
-            console.log(a);
+            JSON.parse(getItem);
     }
 
     xhttp.open("GET", "Router.php?action=get-articles", true);
     xhttp.send();
+
+
 }
+
 getNews();
 
 
 
 
 
-async function checkPosition() {
-
-    const height = document.body.offsetHeight
-    const screenHeight = window.innerHeight
-    const scrolled = window.scrollY
-    const threshold = height - screenHeight / 4
-    const position = scrolled + screenHeight
-
-    if (position >= threshold) {
-    }
-    ;(() => {
-        window.addEventListener("scroll", checkPosition)
-        window.addEventListener("resize", checkPosition)
-    })()
-
-
-}
+// async function checkPosition() {
+//
+//     const height = document.body.offsetHeight
+//     const screenHeight = window.innerHeight
+//     const scrolled = window.scrollY
+//     const threshold = height - screenHeight / 4
+//     const position = scrolled + screenHeight
+//
+//     if (position >= threshold) {
+//     }
+//     ;(() => {
+//         window.addEventListener("scroll", checkPosition)
+//         window.addEventListener("resize", checkPosition)
+//     })()
+//
+//
+// }
 
 
 
 
 function changeToRow() {
 
-
-
     const myStorage = localStorage.getItem('xhttp');
     const a = JSON.parse(myStorage);
-
     const div = [];
 
 
-
-    a.news.forEach(el => {
+    a.forEach(el => {
 
         const id = el.id;
         const heading = el.heading;
@@ -60,8 +56,6 @@ function changeToRow() {
         const image = el.image;
         const sortData = el.sort_date;
         const data = sortData.replace(/-/g, '.');
-
-
 
         const chBlock = `
         <div id="content">
@@ -141,7 +135,7 @@ function changeToList() {
     const chBlock2 = `</div>`;
     div.push(chBlock1);
 
-    a.news.forEach(el => {
+    a.forEach(el => {
 
         const id = el.id;
         const heading = el.heading;
