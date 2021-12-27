@@ -8,7 +8,7 @@ class Router {
     static public function run()
     {
         $request = $_REQUEST;
-        $page = 1;
+        $page = $_REQUEST['page'];
 
 
         switch ($request['action']) {

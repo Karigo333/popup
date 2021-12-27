@@ -2,7 +2,6 @@
 
 require_once "db/db_connect.php";
 require_once "db/News.php";
-require_once "Router.php";
 
 class ArticlesController
 {
@@ -12,7 +11,6 @@ class ArticlesController
 
         $pagination = new News();
         --$page;
-
         $news = $pagination->get(6, $page);
         $jsonContent = json_encode($news);
         echo $jsonContent;

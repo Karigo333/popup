@@ -22,7 +22,6 @@ $newsCount = $pagination->getCount() / 6;
 
 
 
-
 ?>
 
 <!doctype html>
@@ -37,10 +36,11 @@ $newsCount = $pagination->getCount() / 6;
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="public/style.css">
     <title>Fresh News</title>
-    <script src="main.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
+
 <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
         <a href="adminPanel.php" class="navbar-brand d-flex align-items-center ml-5">
@@ -93,7 +93,7 @@ $newsCount = $pagination->getCount() / 6;
     </div>
 
     <div class="col text-center after-posts mt-3">
-        <button id="load" class="btn btn-outline-dark load-more" onclick="getNews(); return false;" type="button">
+        <button id="pagination" class="btn btn-outline-dark load-more" onclick="getNews(); return false;" type="button">
             Load more
         </button>
     </div>
@@ -144,5 +144,6 @@ $newsCount = $pagination->getCount() / 6;
         </div>
     </div>
 </div>
+    <script src="main.js" defer></script>
 </body>
 </html>

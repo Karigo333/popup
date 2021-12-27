@@ -1,47 +1,74 @@
-function getNews() {
+function getNews(page) {
+
+    page = 1;
+    if (page <8) {
+        document.getElementById('pagination').onclick = function () {
+            page++;
+            localStorage.setItem('page', page);
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState === 4 && xhttp.status === 200) {
+                    const responseData = JSON.parse(xhttp.response) || [];
+
+                    const items = JSON.parse(localStorage.getItem('xhttp')) || [];
+                    const data = JSON.stringify([...items, ...responseData]);
+                    localStorage.setItem('xhttp', data);
+                    const a = localStorage.getItem('xhttp');
+
+                }
+
+                page = localStorage.getItem('page');
+
+            }
+            xhttp.open("GET", `Router.php?action=get-articles&page=${page}`, true);
+            xhttp.send();
+        }
+
+
+
+    }
+
+}
+
+
+
+function updateLocalStorage(page = 1) {
+
+    localStorage.clear();
+    page = 1;
+
+
+    localStorage.setItem('page', page);
 
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (xhttp.readyState === 4 && xhttp.status === 200)
-            localStorage.setItem('xhttp', xhttp.response);
-            const getItem = localStorage.getItem('xhttp');
-            JSON.parse(getItem);
-    }
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+            const responseData = JSON.parse(xhttp.response) || [];
 
-    xhttp.open("GET", "Router.php?action=get-articles", true);
+            const items = JSON.parse(localStorage.getItem('xhttp')) || [];
+            const data = JSON.stringify([...items, ...responseData]);
+            localStorage.setItem('xhttp', data);
+            const a = localStorage.getItem('xhttp');
+
+        }
+
+        page = localStorage.getItem('page');
+
+    }
+    xhttp.open("GET", `Router.php?action=get-articles&page=${page}`, true);
     xhttp.send();
 
 
 }
 
-getNews();
-
-
-
-
-
-// async function checkPosition() {
-//
-//     const height = document.body.offsetHeight
-//     const screenHeight = window.innerHeight
-//     const scrolled = window.scrollY
-//     const threshold = height - screenHeight / 4
-//     const position = scrolled + screenHeight
-//
-//     if (position >= threshold) {
-//     }
-//     ;(() => {
-//         window.addEventListener("scroll", checkPosition)
-//         window.addEventListener("resize", checkPosition)
-//     })()
-//
-//
-// }
-
+updateLocalStorage();
+changeToList();
 
 
 
 function changeToRow() {
+
 
     const myStorage = localStorage.getItem('xhttp');
     const a = JSON.parse(myStorage);
@@ -79,6 +106,7 @@ function changeToRow() {
 
         div.push(chBlock);
     })
+
 
     document.getElementById("mydiv").innerHTML = div.join('<br>')
 }
@@ -169,7 +197,25 @@ function changeToList() {
     div.push(chBlock2);
     document.getElementById("mydiv").innerHTML = div.join('')
 
+
 }
 
 
 
+// async function checkPosition() {
+//
+//     const height = document.body.offsetHeight
+//     const screenHeight = window.innerHeight
+//     const scrolled = window.scrollY
+//     const threshold = height - screenHeight / 4
+//     const position = scrolled + screenHeight
+//
+//     if (position >= threshold) {
+//     }
+//     ;(() => {
+//         window.addEventListener("scroll", checkPosition)
+//         window.addEventListener("resize", checkPosition)
+//     })()
+//
+//
+// }
